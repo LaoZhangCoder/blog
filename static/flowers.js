@@ -1,15 +1,4 @@
-<template>
-  <div id="app">
-    <router-view/>
-  </div>
-</template>
-<script>
-export default {
-  name: 'App',
- 
-}
-</script>
-<script>
+// JavaScript Document
 $(function(){
 	var interval;
 
@@ -104,12 +93,12 @@ $(function(){
 	 		 	 
 	 	})
 	var snowflakeURl = [
-	'../static/snowflake1.png',
-	'../static/snowflake2.png',
-	'../static/snowflake3.png',
-	'../static/snowflake4.png',
-	'../static/snowflake5.png',
-	'../static/snowflake6.png',
+	'C:/自学第一次/yourweb/WebContent/imgs/snowflake/snowflake1.png',
+	'C:/自学第一次/yourweb/WebContent/imgs/snowflake/snowflake1.png',
+	'C:/自学第一次/yourweb/WebContent/imgs/snowflake/snowflake1.png',
+	'C:/自学第一次/yourweb/WebContent/imgs/snowflake/snowflake1.png',
+	'C:/自学第一次/yourweb/WebContent/imgs/snowflake/snowflake1.png',
+	'C:/自学第一次/yourweb/WebContent/imgs/snowflake/snowflake1.png'
     ]
         // 雪花容器
         var $flakeContainer = $('#Odiv');
@@ -168,13 +157,8 @@ $(function(){
                 $(this).remove() //结束后删除
             });
             
-        }, 3000)
+        }, 2000)
 		
 	
 	})
-	</script>
-<style>
-@import "./assets/common/common.css";
-.hljs{display:block;overflow-x:auto;padding:0.5em;background:#fff;color:black}
-.hljs-comment,.hljs-quote{color:#006a00}.hljs-keyword,.hljs-selector-tag,.hljs-literal{color:#aa0d91}.hljs-name{color:#008}.hljs-variable,.hljs-template-variable{color:#660}.hljs-string{color:#c41a16}.hljs-regexp,.hljs-link{color:#080}.hljs-title,.hljs-tag,.hljs-symbol,.hljs-bullet,.hljs-number,.hljs-meta{color:#1c00cf}.hljs-section,.hljs-class .hljs-title,.hljs-type,.hljs-attr,.hljs-built_in,.hljs-builtin-name,.hljs-params{color:#5c2699}.hljs-attribute,.hljs-subst{color:#000}.hljs-formula{background-color:#eee;font-style:italic}.hljs-addition{background-color:#baeeba}.hljs-deletion{background-color:#ffc8bd}.hljs-selector-id,.hljs-selector-class{color:#9b703f}.hljs-doctag,.hljs-strong{font-weight:bold}.hljs-emphasis{font-style:italic}
-</style>
+	
