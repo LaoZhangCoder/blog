@@ -12,3 +12,7 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+/bgblog/src/
+/bgblog/.settings/
+/bgblog/*.project
+/bgblog/*.gitignore
