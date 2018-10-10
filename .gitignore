@@ -16,3 +16,7 @@ yarn-error.log*
 /bgblog/.settings/
 /bgblog/*.project
 /bgblog/*.gitignore
+/Backgroundmanager/.settings
+/Backgroundmanager/target
+/Backgroundmanager/*.classpath
+/Backgroundmanager/*.project
