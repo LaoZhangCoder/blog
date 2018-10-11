@@ -5,11 +5,11 @@
             <img src="../assets/imgs/8.png" alt="神的孩子"/>
         </a>
         <div class="navbar-menu">
-            <a href="#">JAVA</a>
+            <a v-for="item in headerdata " href="#">{{item.category}}</a>
             <a href="#">归档</a>
             <a href="#">关于本站</a>
             <a href="#">友情链接</a>
-            <a href="#">友情链接</a> 
+            
         </div>
         <div class="navbar-search">
             <span class="icon-search"></span>
@@ -23,9 +23,9 @@
         <div class="navbar-mobile-menu" onclick="">
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
-                <li><a href="#">JAVA</a></li>
-                <li><a href="#">友情链接</a></li>
-                 <li><a href="#">友情链接</a></li>
+                <li v-for="item in headerdata "><a href="#">{{item.category}}</a></li>
+                <li><a href="#">归档</a></li>
+                 <li><a href="#">关于本站</a></li>
                   <li><a href="#">友情链接</a></li>
             </ul>
         </div>
@@ -34,7 +34,13 @@
 </template>
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  props:{
+    headerdata:Array
+  },
+  mounted(){
+
+  }
 }
 </script>
 
