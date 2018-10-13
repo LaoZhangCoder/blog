@@ -3,9 +3,9 @@
    <div id="Odiv"  style="position: absolute;"></div>
     <Header :headerdata="Category"></Header>
     <Swiped></Swiped>
-    <Article></Article>
-    <Page></Page>
-    <Footer></Footer>
+    <Article :homecontent="Articlelist"></Article>
+    <Page :homepage="Articlelist"  @changepage="changecurrentpage"></Page>
+    <Footer :news="newsarticle"></Footer>
   </div>
 </template>
 <script>
@@ -20,7 +20,9 @@ export default {
   data () {
     return {
     Articlelist:[],
-    Category:[]
+    Category:[],
+    newsarticle:[],
+    thispage:''
     }
   },
   components:{
@@ -33,8 +35,13 @@ export default {
     methods:{
 getHomeInfo:function(){
 
-  axios.get('http://localhost:8081/homedata').then(this.getsuccjson)
+  axios.get('http://localhost:8081/homedata?thispage='+this.thispage).then(this.getsuccjson)
+  axios.get('http://localhost:8081/newarticle').then(this.getsuccnews)
   
+},
+changecurrentpage:function(thispage){
+  this.thispage=thispage
+  axios.get('http://localhost:8081/homedata?thispage='+this.thispage).then(this.getsuccjson)
 },
 getHomecategory:function(){
   axios.get('http://localhost:8081/homedatacategory').then(this.getcategoryjson)
@@ -47,6 +54,18 @@ if(res.ok&&res.list){
   const list=res.list
   
 this.Articlelist=list
+
+
+}
+  },
+  getsuccnews:function(res){
+res=res.data
+
+if(res.ok&&res.list){
+  const list=res.list
+  
+this.newsarticle=list
+
 
 }
   },
@@ -63,6 +82,7 @@ this.Category=listcate
 },
 },
 mounted(){
+  this.thispage=1
     this.getHomeInfo();
     this.getHomecategory();
   }

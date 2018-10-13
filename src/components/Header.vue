@@ -38,9 +38,7 @@ export default {
   props:{
     headerdata:Array
   },
-  mounted(){
-
-  }
+ 
 }
 </script>
 
