@@ -6,6 +6,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="getCategory" resultType="pojo.Categorye">
 select distinct category from article;
 </select>
-
+<select id="getallsize" resultType="int">
+select count(*) from article;
+</select>
+<select id="getthispagecontent" parameterType="pojo.Vo" resultType="pojo.Article">
+select * from article
+<where>
+<if test="tag!= null">
+			AND category = #{tag}
+</if>
+</where>
+ limit #{thispage},12;
+</select>
+<select id="getnewdata" resultType="pojo.Article">
+select * from article order by date desc limit 0,8;
+</select>
+<select id="gettagdata" parameterType="pojo.Vo" resultType="pojo.Article" >
+select*from article where category=#{tag} limit 0,8;
+</select>
+<select id="getcoutbytag" parameterType="pojo.Vo" resultType="long">
+select count(*) from article 
+<where>
+<if test="tag!= null">
+			AND category = #{tag}
+</if>
+</where>
+</select>
+<select id="getdetailbyid" parameterType="int" resultType="pojo.Article">
+select * from article where id=#{id}
+</select>
 </mapper>
 

@@ -1,11 +1,12 @@
 <template>
+ 
    <div id="header" class="header bg-white">
     <div class="navbar-container">
         <a href="#" class="navbar-logo">
             <img src="../assets/imgs/8.png" alt="神的孩子"/>
         </a>
         <div class="navbar-menu">
-            <a v-for="item in headerdata " href="javascript:void(0);" @click="changetag(item.category)">{{item.category}}</a>
+            <a v-for="item in headerdata " href="javascript:void(0);" @click="handlecategoryclick(item.category)">{{item.category}}</a>
             <a href="#">归档</a>
             <a href="#">关于本站</a>
             <a href="#">友情链接</a>
@@ -31,21 +32,20 @@
         </div>
     </div>
 </div>
+
 </template>
 <script>
 export default {
-  name: 'Header',
+  name: 'Heade',
   props:{
     headerdata:Array
   },
   methods:{
-    changetag:function(tag){
-     this.$emit('changetag', tag)
+    handlecategoryclick:function(Category){
+     this.$store.commit('changecategory',Category)
+     this.$router.push('/')
     }
   }
-
-
- 
 }
 </script>
 

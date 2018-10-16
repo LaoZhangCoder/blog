@@ -51,7 +51,7 @@
     <h3 style="margin-left: 20%;color: red">添加内容:注意格式的排版，你在编辑器里什么格式，在网页呈现的就是这个格式！</h3>
     <div style="margin-left:25%">
    
-    <textarea style="width:800px;height:300px;visibility:hidden;display: block;" id="editor_id" name="content" >${article.content }</textarea> 
+    <textarea style="visibility:hidden;display: block;" id="editor_id" name="content" >${article.content }</textarea> 
     </div>
     <input type="submit"  style="width: 500px;height: 80px;margin-left:35%; color: orange;" value="修改文章">
 </form>

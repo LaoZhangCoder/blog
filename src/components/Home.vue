@@ -1,10 +1,10 @@
 <template>
   <div class="index_home">
    <div id="Odiv"  style="position: absolute;"></div>
-    <Header :headerdata="Category"></Header>
+    <Header :headerdata="Category" @changetag="changepagetag"></Header>
     <Swiped></Swiped>
     <Article :homecontent="Articlelist"></Article>
-    <Page :homepage="Articlelist"  @changepage="changecurrentpage"></Page>
+    <Page :homepage="Articlelist"  :coutcategory="categorypage" @changepage="changecurrentpage"></Page>
     <Footer :news="newsarticle"></Footer>
   </div>
 </template>
@@ -22,7 +22,9 @@ export default {
     Articlelist:[],
     Category:[],
     newsarticle:[],
-    thispage:''
+    thispage:'',
+    thistag:'',
+    categorypage:null
     }
   },
   components:{
@@ -35,13 +37,34 @@ export default {
     methods:{
 getHomeInfo:function(){
 
-  axios.get('http://localhost:8081/homedata?thispage='+this.thispage).then(this.getsuccjson)
+  axios.get('http://localhost:8081/homedata?tag='+this.thistag+'&thispage='+this.thispage).then(this.getsuccjson)
   axios.get('http://localhost:8081/newarticle').then(this.getsuccnews)
+  axios.get('http://localhost:8081/Category/count?tag='+this.thistag).then(this.getsucctagcount)
   
+},
+changepagetag:function(thistag){
+this.thistag=thistag
+this.thispage=1
+ axios.get('http://localhost:8081/homedata?tag='+this.thistag+'&thispage='+this.thispage).then(this.getsuccjson)
+axios.get('http://localhost:8081/Category/count?tag='+this.thistag).then(this.getsucctagcount)
+},
+getsucctagcount:function(res){
+  this.categorypage=res.data
+},
+getsucctag:function(res){
+res=res.data
+
+if(res.ok&&res.list){
+  const list=res.list
+  
+this.Articlelist=list
+
+
+}
 },
 changecurrentpage:function(thispage){
   this.thispage=thispage
-  axios.get('http://localhost:8081/homedata?thispage='+this.thispage).then(this.getsuccjson)
+  axios.get('http://localhost:8081/homedata?tag='+this.thistag+'&thispage='+this.thispage).then(this.getsuccjson)
 },
 getHomecategory:function(){
   axios.get('http://localhost:8081/homedatacategory').then(this.getcategoryjson)
@@ -83,6 +106,8 @@ this.Category=listcate
 },
 mounted(){
   this.thispage=1
+  this.thistag=this.$store.state.Category
+
     this.getHomeInfo();
     this.getHomecategory();
   }

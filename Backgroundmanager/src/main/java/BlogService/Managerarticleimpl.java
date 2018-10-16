@@ -15,6 +15,7 @@ import pojo.Article;
 import pojo.ArticleExample;
 import pojo.Rootuser;
 import pojo.RootuserExample;
+import pojo.Vo;
 import pojo.ArticleExample.Criteria;
 import pojo.Categorye;
 import pojo.Resultdata;
@@ -75,4 +76,74 @@ private RootuserMapper rm;
 			data.setListcategory(category);
 			data.setOk(true);}
 	}
+	public long getcount() {
+		int getallsize = cm.getallsize();
+		
+		return getallsize;
+		// TODO Auto-generated method stub
+		
+	}
+	public void getthispageitem(Resultdata data,String tag, int thispage) {
+		// TODO Auto-generated method stub
+		int startpage=(thispage-1)*12;
+		Vo vo = new Vo();
+		if("".equals(tag)) {
+			tag=null;
+		}
+		vo.setTag(tag);
+		vo.setThispage(startpage);
+		
+ List<Article> list = cm.getthispagecontent(vo);
+
+	if(list!=null) {
+		
+		data.setList(list);
+		data.setOk(true);}
+}
+	public void getnewsarticle(Resultdata data) {
+		// TODO Auto-generated method stub
+		List<Article> getnewdata = cm.getnewdata();
+		if(getnewdata!=null) {
+			data.setList(getnewdata);
+			data.setOk(true);
+		}
+		
+	}
+	public void gettagdata(String tag, int thispage,Resultdata data) {
+		// TODO Auto-generated method stub
+		Vo vo = new Vo();
+		vo.setTag(tag);
+		vo.setThispage(thispage);
+		List<Article> gettagdata = cm.gettagdata(vo);
+		if(gettagdata!=null) {
+			data.setList(gettagdata);
+			data.setOk(true);
+		}
+		
+	}
+	public long getcountbytag(String tag) {
+		// TODO Auto-generated method stub
+		Vo vo = new Vo();
+		if("".equals(tag)) {
+			tag=null;
+		}
+		vo.setTag(tag);
+		 
+		long getcoutbytag = cm.getcoutbytag(vo);
+		
+		return getcoutbytag;
+	}
+	public Article getdetailbyid(int id) {
+		// TODO Auto-generated method stub
+		List<Article> getdetailbyid = cm.getdetailbyid(id);
+		Article article=new Article();
+		if(getdetailbyid!=null) {
+			 article = getdetailbyid.get(0);
+			
+		}
+	
+		return article;
+	}
+		
+	
 }

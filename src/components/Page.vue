@@ -8,7 +8,7 @@
     
   background
   layout="prev, pager, next"
-  :total="count"
+  :total="coutcategory ?coutcategory:count"
   :page-size="12">
 </el-pagination>
 
@@ -24,25 +24,18 @@
 import axios from 'axios'
 export default {
   name: 'Homepage',
+  props:{
+  	coutcategory:null
+  },
   data() {return{
   	count:null
   }},
   methods: {
       handleCurrentChange(val) {
         this.$emit('changepage',val)
-      },
-      getitemcount:function(){
-	axios.get('http://localhost:8081/getcount').then(this.getsuccsize)
-},
-getsuccsize:function(res){
-this.count=res.data
-
-}
+      }
     },
-    mounted(){
-    	this.getitemcount();
-    }
-  
+   
 }
 </script>
 

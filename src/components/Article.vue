@@ -5,10 +5,10 @@
 <!--这里开始!-->
             <div class="post-list-item" v-for="item of homecontent" :key="item.id">
                 <div class="post-list-item-container">
-                    <a href="http://www.mofum.com/article/mission-317-01" class="item-thumb  bg-deepgrey"
-                       style="background-image:url(/templates/themes/default/static/img/rand/7.jpg);">
+                    <router-link :to="'/detail/'+item.id"  class="item-thumb  bg-deepgrey"
+                      >
                         <dir class="item-desc" v-html="delHtmlTag('作者:'+item.autor+item.content)"></dir>
-                    </a>
+                    </router-link>
                     <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
                     <div class="item-slant"></div>
                     <div class="item-label">
@@ -17,33 +17,15 @@
                         <div class="item-meta clearfix">
                            
                             <div class="item-meta-cat">
+                                <el-badge :value="200" :max="99" class="item">
+  <el-button size="small">评论</el-button>
+</el-badge>
                                 <a href="/category/%E5%AF%AE%E6%AF%94%E8%B5%9B"><el-button type="text" class="button">查看详情</el-button></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-<!--这里结束!-->
-  
-             
-              
-             
-              
-           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         </div>
     </div>
@@ -68,6 +50,9 @@ return str.replace(/<[^>]+>/g,"");
 </script>
 
 <style scoped>
-
+.item{
+    float:left;
+    margin-top:20px;
+}
 
 </style>

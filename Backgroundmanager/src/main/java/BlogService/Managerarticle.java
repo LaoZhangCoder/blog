@@ -6,6 +6,7 @@ import javax.security.auth.login.LoginException;
 
 import pojo.Article;
 import pojo.Resultdata;
+import pojo.Vo;
 
 public interface Managerarticle {
 public List<Article> selectall();
@@ -13,4 +14,12 @@ public void deletebyid(int id);
 void updatepassword(String oldPassword,String newPassword,String username) throws LoginException;
 void getalldata(Resultdata data);
 void getallcategory(Resultdata data);
+long getcount();
+void getthispageitem(Resultdata resultdata,String tag,int thispage);
+void getnewsarticle(Resultdata data);
+void gettagdata(String tag,int thispage,Resultdata resultdata);
+long getcountbytag(String tag);
+public Article getdetailbyid(int id);
+
+
 }

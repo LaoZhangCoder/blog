@@ -3,11 +3,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
- <% String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+
 <head>
-<base href="<%=basePath%>">
+
     <title>添加页面</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <link href="${pageContext.request.contextPath}/css/my.css" rel="stylesheet">
@@ -17,10 +15,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             width:100%;
         }
     </style>
-    <link rel="stylesheet" href="/kindeditor-4.1.10/themes/default/default.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/kindeditor-4.1.10/themes/default/default.css" />
     <script src="/jq/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/kindeditor-4.1.10/kindeditor-all-min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/kindeditor-4.1.10/lang/zh_CN.js"></script>
 </head>
 <body>
 <div style="background-image: url('../imgs/4.jpg');">
@@ -65,10 +63,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <h3 style="margin-left: 20%;color: red">添加内容:注意格式的排版，你在编辑器里什么格式，在网页呈现的就是这个格式！</h3>
   <div style="margin-left:25%">
-    <textarea style="width:800px;height:300px;visibility:hidden;display: block; " name="content" >   
+    <textarea style="visibility:hidden;display: block; " name="content" >   
     </textarea>
     </div>
-    <input type="submit"  style="width: 500px;height: 80px;margin-left:35%; color: orange; margin-top:30px; " value="发布文章">
+    <input type="submit"  style="margin-left:35%; color: orange; margin-top:30px; " value="发布文章">
 </form>
 
 </div>
@@ -78,8 +76,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 var editor;
 KindEditor.ready(function(K) {
+	
     editor = K.create('textarea[name="content"]', {
-        allowFileManager : true
+        allowFileManager : true,
+  
+   
     });
     K('input[name=getHtml]').click(function(e) {
         alert(editor.html());

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import BlogService.Managerarticle;
 import pojo.Article;
 import pojo.Resultdata;
+import pojo.Vo;
 
 @Controller
 public class ManagerArticleController {
@@ -47,10 +48,9 @@ public class ManagerArticleController {
 	}
 	@RequestMapping(value="/homedata")
 	@ResponseBody
-	public Resultdata getdata() {
+	public Resultdata getdata(String tag,int thispage) {
 		Resultdata resultdata = new Resultdata();
-		managerticle.getalldata(resultdata);
-		
+		managerticle.getthispageitem(resultdata,tag,thispage);
 		return resultdata;
 		
 	} 
@@ -60,6 +60,47 @@ public class ManagerArticleController {
 		Resultdata resultdata = new Resultdata();
 		managerticle.getallcategory(resultdata);
 		return resultdata;
+		
+	} 
+	@RequestMapping(value="/getcount")
+	@ResponseBody
+	public long getitemcount() {
+		
+		long getcount = managerticle.getcount();
+		return getcount;
+		
+	} 
+	@RequestMapping(value="/newarticle")
+	@ResponseBody
+	public Resultdata getnewitems() {
+		Resultdata resultdata = new Resultdata();
+	 managerticle.getnewsarticle(resultdata);
+	return resultdata;
+	 
+		
+		
+	} 
+	@RequestMapping(value="/Category")
+	@ResponseBody
+	public Resultdata gettagdata(String tag,int thispage) {
+		Resultdata resultdata = new Resultdata();
+		
+		 managerticle.gettagdata(tag, thispage, resultdata);
+		
+		return resultdata;
+	}
+	@RequestMapping(value="/Category/count")
+	@ResponseBody
+	public long getcategorycount(String tag) {
+		long getcount = managerticle.getcountbytag(tag);
+		return getcount;
+		
+	} 
+	@RequestMapping(value="/Category/detail")
+	@ResponseBody
+	public Article getdetailbyid(int id) {
+	 Article article = managerticle.getdetailbyid(id);
+		return article;
 		
 	} 
 	
