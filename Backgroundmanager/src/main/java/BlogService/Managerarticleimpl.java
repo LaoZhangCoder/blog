@@ -1,32 +1,39 @@
 package BlogService;
-
 import java.util.List;
-
 import javax.security.auth.login.LoginException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Untils.MD5Utils;
 import mapper.ArticleMapper;
 import mapper.CategoryMapper;
+import mapper.LinksMapper;
 import mapper.RootuserMapper;
+import mapper.UserMapper;
 import pojo.Article;
 import pojo.ArticleExample;
-import pojo.Rootuser;
-import pojo.RootuserExample;
-import pojo.Vo;
 import pojo.ArticleExample.Criteria;
 import pojo.Categorye;
+import pojo.Comment;
+import pojo.Links;
 import pojo.Resultdata;
+import pojo.Rootuser;
+import pojo.RootuserExample;
+import pojo.User;
+import pojo.UserExample;
+import pojo.Vo;
 @Service
 public class Managerarticleimpl implements Managerarticle {
 @Autowired
 private ArticleMapper articlemapper;
 @Autowired 
-CategoryMapper cm;
+private CategoryMapper cm;
 @Autowired
 private RootuserMapper rm;
+@Autowired
+private UserMapper um;
+@Autowired
+private LinksMapper lm;
 	public List<Article> selectall() {
 		// TODO Auto-generated method stub
 		List<Article> list = articlemapper.selectByExample(null);
@@ -143,6 +150,35 @@ private RootuserMapper rm;
 		}
 	
 		return article;
+	}
+	public void addusermessage(User user) {
+		// TODO Auto-generated method stub
+		um.insert(user);
+		
+	}
+	@Override
+	public List<User> getusercommentsbyid(int id) {
+		// TODO Auto-generated method stub
+		List<User> list = cm.getcomments(id);
+		return list;
+	}
+	@Override
+	public List<Comment> getcommenttotals() {
+		// TODO Auto-generated method stub
+		List<Comment> list = cm.getcountcomment();
+		return list;
+	}
+	@Override
+	public List<User> getnewcomment() {
+	List<User> list = cm.getnewcomments();
+		return list;
+	}
+	@Override
+	public List<Links> getalllinks() {
+		// TODO Auto-generated method stub
+		List<Links> list = lm.selectByExample(null);
+		
+		return list;
 	}
 		
 	

@@ -35,5 +35,14 @@ select count(*) from article
 <select id="getdetailbyid" parameterType="int" resultType="pojo.Article">
 select * from article where id=#{id}
 </select>
+<select id="getcomments" parameterType="int" resultType="pojo.User">
+select * from user where id=#{id}
+</select>
+<select id="getcountcomment" resultType="pojo.Comment">
+select count(*) total,id from user group by id
+</select>
+<select id="getnewcomments" resultType="pojo.User">
+select * from user  order by date desc limit 0,8
+</select>
 </mapper>
 

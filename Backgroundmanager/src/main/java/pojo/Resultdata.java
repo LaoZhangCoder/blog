@@ -7,6 +7,20 @@ public class Resultdata implements Serializable{
 	private boolean ok;
 	private List<Article> list;
 	private List<Categorye> listcategory;
+	private List<User> listcomments;
+	private int count;
+	public List<User> getListcomments() {
+		return listcomments;
+	}
+	public void setListcomments(List<User> listcomments) {
+		this.listcomments = listcomments;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public List<Categorye> getListcategory() {
 		return listcategory;
 	}

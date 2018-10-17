@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mapper.UserMapper" >
   <resultMap id="BaseResultMap" type="pojo.User" >
-    <id column="userid" property="userid" jdbcType="VARCHAR" />
-    <result column="id" property="id" jdbcType="VARCHAR" />
+    <id column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="id" property="id" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="href" property="href" jdbcType="VARCHAR" />
@@ -106,17 +106,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from user
-    where userid = #{userid,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
-    where userid = #{userid,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="pojo.UserExample" >
     delete from user
@@ -128,7 +128,7 @@
     insert into user (userid, id, username, 
       email, href, date, 
       comment)
-    values (#{userid,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+    values (#{userid,jdbcType=INTEGER}, #{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{href,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, 
       #{comment,jdbcType=LONGVARCHAR})
   </insert>
@@ -159,10 +159,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userid != null" >
-        #{userid,jdbcType=VARCHAR},
+        #{userid,jdbcType=INTEGER},
       </if>
       <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
@@ -191,10 +191,10 @@
     update user
     <set >
       <if test="record.userid != null" >
-        userid = #{record.userid,jdbcType=VARCHAR},
+        userid = #{record.userid,jdbcType=INTEGER},
       </if>
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=VARCHAR},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.username != null" >
         username = #{record.username,jdbcType=VARCHAR},
@@ -218,8 +218,8 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update user
-    set userid = #{record.userid,jdbcType=VARCHAR},
-      id = #{record.id,jdbcType=VARCHAR},
+    set userid = #{record.userid,jdbcType=INTEGER},
+      id = #{record.id,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       href = #{record.href,jdbcType=VARCHAR},
@@ -231,8 +231,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update user
-    set userid = #{record.userid,jdbcType=VARCHAR},
-      id = #{record.id,jdbcType=VARCHAR},
+    set userid = #{record.userid,jdbcType=INTEGER},
+      id = #{record.id,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       href = #{record.href,jdbcType=VARCHAR},
@@ -245,7 +245,7 @@
     update user
     <set >
       <if test="id != null" >
-        id = #{id,jdbcType=VARCHAR},
+        id = #{id,jdbcType=INTEGER},
       </if>
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},
@@ -263,25 +263,25 @@
         comment = #{comment,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where userid = #{userid,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="pojo.User" >
     update user
-    set id = #{id,jdbcType=VARCHAR},
+    set id = #{id,jdbcType=INTEGER},
       username = #{username,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       href = #{href,jdbcType=VARCHAR},
       date = #{date,jdbcType=TIMESTAMP},
       comment = #{comment,jdbcType=LONGVARCHAR}
-    where userid = #{userid,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="pojo.User" >
     update user
-    set id = #{id,jdbcType=VARCHAR},
+    set id = #{id,jdbcType=INTEGER},
       username = #{username,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       href = #{href,jdbcType=VARCHAR},
       date = #{date,jdbcType=TIMESTAMP}
-    where userid = #{userid,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
   </update>
 </mapper>

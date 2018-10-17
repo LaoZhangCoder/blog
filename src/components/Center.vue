@@ -7,7 +7,7 @@
         </h1>
         <div class="post-data">
             <time datetime="2018-03-14" itemprop="datePublished">发布于 {{detail.date | dateFmt('YYYY-MM-DD')}}</time>
-            /<a href="#comments">没有评论</a> /
+            /<a href="#comments">{{this.count?this.count:0}}条评论</a> /
             {{detail.liulanliang?detail.liulanliang:0}}浏览
         </div>
     </div>
@@ -18,7 +18,7 @@
 </div>
 </article>
   <el-row :gutter="1">
-  <el-col :xs="{span:24}" :sm="{span:8,offset:8}" :md="{span:8,offset:8}" :lg="{span:8,offset:8}" :xl="{span:8,offset:8}"><div class="grid-content " v-html="detail.content" style="background:#f7f7f7;color:black;letter-spacing:3px">
+  <el-col :xs="{span:24}" :sm="{span:8,offset:8}" :md="{span:8,offset:8}" :lg="{span:8,offset:8}" :xl="{span:8,offset:8}"><div class="grid-content " v-html="detail.content" style="background:#f7f7f7;color:black;letter-spacing:3px; overflow-x:scroll">
   </div>
   </el-col>
 </el-row>
@@ -36,114 +36,37 @@
   <el-col :xs="{span:24}" :sm="{span:8,offset:8}" :md="{span:8,offset:8}" :lg="{span:8,offset:8}" :xl="{span:8,offset:8}"><div class="grid-content ">
     <div >
     <div>
-       
-
-        <form method="post" id="comment-form" class="comment-form" role="form" onsubmit="return TaleComment.subComment();">
-            <input type="text" name="author" maxlength="12" id="author" class="form-control input-control clearfix"
-                   placeholder="姓名 (*)" value="" required/>
-            <input type="email" name="mail" id="mail" class="form-control input-control clearfix" placeholder="邮箱 (*)"
+        <form  id="comment-form" class="comment-form" onclick="return false">
+            <input type="text" name="username" v-model="username" maxlength="12" id="author" class="form-control input-control clearfix"
+                   placeholder="姓名 (*必填)" value="" required/>
+            <input type="email" name="email"  v-model="email" id="mail" class="form-control input-control clearfix" placeholder="邮箱 (*必填)"
                    value="" required/>
-            <input type="url" name="url" id="url" class="form-control input-control clearfix" placeholder="你的网址 (http://)"
+            <input type="text" name="href" id="url" v-model="href" class="form-control input-control clearfix" placeholder="你的网址(选填)"
                    value=""/>
-            <textarea name="text" id="textarea" class="form-control" placeholder="小基佬，请留下你的评论." required minlength="5" maxlength="2000"></textarea>
-            <button type="submit" class="submit" id="misubmit">提交</button>
+            <textarea name="comment" id="textarea" v-model="comment" class="form-control" placeholder="小基佬，请留下你的评论(必填)." required minlength="5" maxlength="2000"></textarea>
+          
+
+             <el-button @click="handlesubmit" type="button" class="submit"size="mini" round>提交</el-button>
         </form>
-
-
-
-
     </div>
 </div>
   </div>
   </el-col>
 </el-row>
    
-   <el-row :gutter="1">
+   <el-row :gutter="1" v-for="comments in leavecomments" :key="comments.itemid">
   <el-col :xs="{span:24}" :sm="{span:8,offset:8}" :md="{span:8,offset:8}" :lg="{span:8,offset:8}" :xl="{span:8,offset:8}"><div class="grid-content " style="background:white; color:black; font-size:18px">
-   <div style="display:flex"> <img  src="../assets/imgs/8.png" width="50" height="50" style="margin:20px; border-radius:4px; " /><span style="margin-top:20px;font-size:14px;color:#5f5f5f;">wwww</span>
+   <div style="display:flex"> <img  src="../assets/imgs/8.png" width="50" height="50" style="margin:20px; border-radius:4px; " /><span style="margin-top:20px;font-size:14px;color:#5f5f5f;">{{comments.username}}</span>
 
    </div>
-   <div style="font-size:14px; margin-left:20px">厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害
-   厉害厉害厉 厉害厉害厉
-   厉害厉害厉厉害厉害厉
-   厉害厉害厉
-   厉害厉害厉 厉害厉害厉
-   厉害厉害厉厉害厉害厉
-   厉害厉害厉
-   厉害厉害厉厉害厉害厉害厉害厉害厉害厉害</div>
- 
-<div style="font-size:14px; margin-left:20px">2012-12-12</div>
-
-
+   <div style="font-size:14px; margin-left:20px">{{comments.comment}}</div>
+<div style="font-size:14px; margin-left:20px">{{comments.date | dateFmt('YYYY-MM-DD hh:mm')}}</div>
   </div>
   </el-col>
 </el-row>
- <el-row :gutter="1">
-  <el-col :xs="{span:24}" :sm="{span:8,offset:8}" :md="{span:8,offset:8}" :lg="{span:8,offset:8}" :xl="{span:8,offset:8}"><div class="grid-content " style="background:white; color:black; font-size:18px">
-   <div style="display:flex"> <img  src="../assets/imgs/8.png" width="50" height="50" style="margin:20px; border-radius:4px; " /><span style="margin-top:20px;font-size:14px;color:#5f5f5f;">wwww</span>
-
-   </div>
-   <div style="font-size:14px; margin-left:20px">厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害
-   厉害厉害厉 厉害厉害厉
-   厉害厉害厉厉害厉害厉
-   厉害厉害厉
-   厉害厉害厉 厉害厉害厉
-   厉害厉害厉厉害厉害厉
-   厉害厉害厉
-   厉害厉害厉厉害厉害厉害厉害厉害厉害厉害</div>
-
-<div style="font-size:14px; margin-left:20px">2012-12-12</div>
-
-
-  </div>
-  </el-col>
-</el-row>
- <el-row :gutter="1">
-  <el-col :xs="{span:24}" :sm="{span:8,offset:8}" :md="{span:8,offset:8}" :lg="{span:8,offset:8}" :xl="{span:8,offset:8}"><div class="grid-content " style="background:white; color:black; font-size:18px">
-   <div style="display:flex"> <img  src="../assets/imgs/8.png" width="50" height="50" style="margin:20px; border-radius:4px; " /><span style="margin-top:20px;font-size:14px;color:#5f5f5f;">wwww</span>
-
-   </div>
-   <div style="font-size:14px; margin-left:20px">厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害
-   厉害厉害厉 厉害厉害厉
-   厉害厉害厉厉害厉害厉
-   厉害厉害厉
-   厉害厉害厉 厉害厉害厉
-   厉害厉害厉厉害厉害厉
-   厉害厉害厉
-   厉害厉害厉厉害厉害厉害厉害厉害厉害厉害</div>
-
-<div style="font-size:14px; margin-left:20px">2012-12-12</div>
-
-
-  </div>
-  </el-col>
-</el-row>
- <el-row :gutter="1">
-  <el-col :xs="{span:24}" :sm="{span:8,offset:8}" :md="{span:8,offset:8}" :lg="{span:8,offset:8}" :xl="{span:8,offset:8}"><div class="grid-content " style="background:white; color:black; font-size:18px">
-   <div style="display:flex"> <img  src="../assets/imgs/8.png" width="50" height="50" style="margin:20px; border-radius:4px; " /><span style="margin-top:20px;font-size:14px;color:#5f5f5f;">wwww</span>
-
-   </div>
-   <div style="font-size:14px; margin-left:20px">厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害厉害
-   厉害厉害厉 厉害厉害厉
-   厉害厉害厉厉害厉害厉
-   厉害厉害厉
-   厉害厉害厉 厉害厉害厉
-   厉害厉害厉厉害厉害厉
-   厉害厉害厉
-   厉害厉害厉厉害厉害厉害厉害厉害厉害厉害</div>
-
-<div style="font-size:14px; margin-left:20px">2012-12-12</div>
-
-
-  </div>
-  </el-col>
-</el-row>
-
 </div>
-
 </div>
 </template>
-
 <script>
 import axios from 'axios'
 export default {
@@ -151,8 +74,15 @@ export default {
   data () {
     return {
       detail:Object,
-      tags:[]
-    }
+      id:null,
+      tags:[],
+     username:null,
+   email:null,
+  href:null,
+  comment:null,
+  leavecomments:[],
+  count:null
+      }
   },
 methods: {
   getDetailinfo () {
@@ -162,16 +92,40 @@ methods: {
 this.detail=res.data
 this.tags=res.data.tag.split(',')
   },
+handlesubmit:function(){
+  var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+
+if(this.username&&this.email&&this.comment&&reg.test(this.email))
+  {
+    
+ axios.post('http://localhost:8081/Category/leavemessage?username='+this.username+'&email='+this.email+'&href='+this.href+'&comment='+this.comment+'&id='+this.detail.id).then(this.getsuccmessage)
+}
 
 },
-mounted () {
-this.getDetailinfo()
+getsuccmessage:function(res){
+if(res.data.ok){
+ window.location.reload();
 }
-  }
-
+},
+getcomments:function()
+ {
+   axios.get('http://localhost:8081/Category/leavecomments?id='+this.id).then(this.getleavecomments);
+ },
+ getleavecomments:function(res){
+res=res.data
+if(res.ok&&res.listcomments)
+{
+  this.leavecomments=res.listcomments
+  this.count=res.count;
+}
+ }
+},
+mounted ()        {
+this.id=this.$route.params.id
+this.getDetailinfo()
+this.getcomments() }
+}
 </script>
 
 <style scoped>
-
- 
 </style>

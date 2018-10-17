@@ -3,9 +3,9 @@
    <div id="Odiv"  style="position: absolute;"></div>
     <Header :headerdata="Category" @changetag="changepagetag"></Header>
     <Swiped></Swiped>
-    <Article :homecontent="Articlelist"></Article>
+    <Article :homecontent="Articlelist" :totala="totala"></Article>
     <Page :homepage="Articlelist"  :coutcategory="categorypage" @changepage="changecurrentpage"></Page>
-    <Footer :news="newsarticle"></Footer>
+    <Footer :news="newsarticle" :newcomments="newcomments"></Footer>
   </div>
 </template>
 <script>
@@ -24,7 +24,9 @@ export default {
     newsarticle:[],
     thispage:'',
     thistag:'',
-    categorypage:null
+    categorypage:null,
+    totala:[],
+    newcomments:[]
     }
   },
   components:{
@@ -40,7 +42,20 @@ getHomeInfo:function(){
   axios.get('http://localhost:8081/homedata?tag='+this.thistag+'&thispage='+this.thispage).then(this.getsuccjson)
   axios.get('http://localhost:8081/newarticle').then(this.getsuccnews)
   axios.get('http://localhost:8081/Category/count?tag='+this.thistag).then(this.getsucctagcount)
+  axios.get('http://localhost:8081/Category/getcommenttotal').then(this.getcommenttotal)
+  axios.get('http://localhost:8081/Category/getnewcomment').then(this.getnewcomment)
   
+},
+getnewcomment:function(res){
+  if(res.status){
+this.newcomments=res.data
+  }
+  
+},
+getcommenttotal:function(res){
+   if(res.status){
+this.totala=res.data
+}
 },
 changepagetag:function(thistag){
 this.thistag=thistag

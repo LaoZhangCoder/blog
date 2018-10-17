@@ -7,9 +7,9 @@
         </a>
         <div class="navbar-menu">
             <a v-for="item in headerdata " href="javascript:void(0);" @click="handlecategoryclick(item.category)">{{item.category}}</a>
-            <a href="#">归档</a>
-            <a href="#">关于本站</a>
-            <a href="#">友情链接</a>
+           
+              <router-link :to="'/aboutblog/'">关于本站</router-link>
+            <router-link :to="'/Links/'">友情链接</router-link>
             
         </div>
         <div class="navbar-search">
@@ -24,10 +24,11 @@
         <div class="navbar-mobile-menu" onclick="">
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
-                <li v-for="item in headerdata "><a href="#">{{item.category}}</a></li>
-                <li><a href="#">归档</a></li>
-                 <li><a href="#">关于本站</a></li>
-                  <li><a href="#">友情链接</a></li>
+                <li> <a v-for="item in headerdata " href="javascript:void(0);" @click="handlecategoryclick(item.category)">{{item.category}}</a>
+           </li>
+               
+                 <li> <router-link :to="'/aboutblog/'">关于本站</router-link></li>
+                  <li><router-link :to="'/Links/'">友情链接</router-link></li>
             </ul>
         </div>
     </div>
