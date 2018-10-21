@@ -1,10 +1,10 @@
 <template>
   <div class="index_home">
    <div id="Odiv"  style="position: absolute;"></div>
-    <Header :headerdata="Category" @changetag="changepagetag"></Header>
+    <Header :headerdata="Category" @changetag="changepagetag" @searcharticle="searchartic" :thispage="thispage"></Header>
     <Swiped></Swiped>
-    <Article :homecontent="Articlelist" :totala="totala"></Article>
-    <Page :homepage="Articlelist"  :coutcategory="categorypage" @changepage="changecurrentpage"></Page>
+    <Article :homecontent="Articlelist" :totala="totala" :error="error"></Article>
+    <Page :homepage="Articlelist"  :coutcategory="categorypage" :thispage="thispage" @changepage="changecurrentpage"></Page>
     <Footer :news="newsarticle" :newcomments="newcomments"></Footer>
   </div>
 </template>
@@ -26,7 +26,10 @@ export default {
     thistag:'',
     categorypage:null,
     totala:[],
-    newcomments:[]
+    newcomments:[],
+    issearch:null,
+    search:null,
+    error:null
     }
   },
   components:{
@@ -45,6 +48,13 @@ getHomeInfo:function(){
   axios.get('http://localhost:8081/Category/getcommenttotal').then(this.getcommenttotal)
   axios.get('http://localhost:8081/Category/getnewcomment').then(this.getnewcomment)
   
+},
+searchartic:function(searchdata){
+this.Articlelist=searchdata.list
+this.error=""
+this.categorypage=0
+if(searchdata.count==0){
+this.error="抱歉不存在该文章！"}
 },
 getnewcomment:function(res){
   if(res.status){

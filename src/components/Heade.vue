@@ -12,15 +12,7 @@
             <router-link :to="'/Links/'">友情链接</router-link>
             
         </div>
-        <div class="navbar-search">
-            <span class="icon-search"></span>
-            <form role="search" onsubmit="return false;">
-                <span class="search-box">
-                    <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30"
-                           autocomplete="off">
-                </span>
-            </form>
-        </div>
+     
         <div class="navbar-mobile-menu" onclick="">
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
@@ -38,6 +30,11 @@
 <script>
 export default {
   name: 'Heade',
+   data (){
+    return {
+      searchcontent:null
+    }
+  },
   props:{
     headerdata:Array
   },
@@ -45,6 +42,20 @@ export default {
     handlecategoryclick:function(Category){
      this.$store.commit('changecategory',Category)
      this.$router.push('/')
+    },
+     show:function(ev){
+       if(ev.keyCode == 13&&this.searchcontent!=null){
+          axios.get('http://localhost:8081/Category/search?searchcontent='+this.searchcontent).then(this.getsuccda)
+
+    }
+  },
+     getsuccda:function(res){
+      res=res.data   
+      if(res!=null&&res.ok){
+        var searchdata=res
+        this.$emit('searcharticle',searchdata)
+      }          
+
     }
   }
 }

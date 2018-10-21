@@ -3,29 +3,27 @@ package AriticleController;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
-
 import javax.security.auth.login.LoginException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
+import BlogService.AriticleSerivice;
 import BlogService.Managerarticle;
 import pojo.Article;
 import pojo.Comment;
 import pojo.Links;
 import pojo.Resultdata;
 import pojo.User;
-import pojo.Vo;
 
 @Controller
 public class ManagerArticleController {
 	@Autowired
 	private Managerarticle managerticle;
+	@Autowired
+	private AriticleSerivice as;
 	@RequestMapping(value="/Mangermentarticles")
 	public String Manager(Model model) {
 		List<Article> list = managerticle.selectall();
@@ -161,5 +159,28 @@ public class ManagerArticleController {
 		
 	} 
 	
+	@RequestMapping(value="/Category/addpageviews")
+	@ResponseBody
+	public Resultdata addpageviews(int id) {
+	managerticle.addpageviews(id);
+	Resultdata resultdata = new Resultdata();
+	resultdata.setOk(true);
+	return resultdata;
+	}
 	
+	@RequestMapping(value="/Category/search")
+	@ResponseBody
+	public Resultdata search(String searchcontent) throws UnsupportedEncodingException {
+		Resultdata resultdata=null;
+		String string=new String(searchcontent.getBytes("ISO-8859-1"),"utf-8"); 	
+		try {
+		 resultdata = as.queryarticlewithhighlingting(string);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		return resultdata;
+	
+	}
 }

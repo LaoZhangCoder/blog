@@ -9,6 +9,22 @@ public class Resultdata implements Serializable{
 	private List<Categorye> listcategory;
 	private List<User> listcomments;
 	private int count;
+	private boolean issearch;
+	private String searchcontent;
+	
+	
+	public String getSearchcontent() {
+		return searchcontent;
+	}
+	public void setSearchcontent(String searchcontent) {
+		this.searchcontent = searchcontent;
+	}
+	public boolean isIssearch() {
+		return issearch;
+	}
+	public void setIssearch(boolean issearch) {
+		this.issearch = issearch;
+	}
 	public List<User> getListcomments() {
 		return listcomments;
 	}

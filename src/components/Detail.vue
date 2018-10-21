@@ -23,6 +23,7 @@ components:{
 methods:{
 getHomecategory:function(){
   axios.get('http://localhost:8081/homedatacategory').then(this.getcategoryjson)
+ 
 },
 getcategoryjson:function(res){
 res=res.data

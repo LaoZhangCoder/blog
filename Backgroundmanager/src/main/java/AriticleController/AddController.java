@@ -19,7 +19,7 @@ public class AddController {
 @Autowired
 private AriticleSerivice ari;
 @RequestMapping(value="/addariticle")
-public void addariticle(Article article, MultipartFile pictureFile,HttpServletRequest request) throws Exception {
+public String addariticle(Article article, MultipartFile pictureFile,HttpServletRequest request) throws Exception {
 	String path = request.getSession().getServletContext().getRealPath("/")+ "imgs\\";;
 	String picName = UUID.randomUUID().toString();
 	// 获取文件名
@@ -29,6 +29,7 @@ public void addariticle(Article article, MultipartFile pictureFile,HttpServletRe
 		pictureFile.transferTo(new File(path + picName + extName));
 		article.setImghref(picName + extName);
 	ari.addariticle(article);
+	return "redirect:http://localhost:8080/#/";
 	
 }
 @RequestMapping(value="/toaddariticle")

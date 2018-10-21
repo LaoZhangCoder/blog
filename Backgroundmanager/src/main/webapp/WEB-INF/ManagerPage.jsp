@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            ${article.date}
            </td>
                 <td>  
-                   <a href="article?articles_id=${article.id }"><img src="imgs/read.png" alt="查看" title="查看"/></a>
+                   <a href="http://localhost:8080/#/detail/${article.id }"><img src="imgs/read.png" alt="查看" title="查看"/></a>
                     <a href="changearticlecontent?articles_id=${article.id }"> <img src="imgs/xiugai.png" alt="修改" title="修改"/></a>
               <a href="javascript:;" onclick="delProFromCart('${article.id}')" class="removeProvider"><img src="imgs/schu.png" alt="双击删除" title="删除"/></a>
 

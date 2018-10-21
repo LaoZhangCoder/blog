@@ -31,4 +31,8 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="mapper" />
 	</bean>
+	<bean id="httpSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+		<constructor-arg index="0" value="http://47.106.115.24:8080/solr/"/>
+	</bean>
+	
 </beans>

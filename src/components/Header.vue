@@ -14,8 +14,7 @@
             <span class="icon-search"></span>
             <form role="search" onsubmit="return false;">
                 <span class="search-box">
-                    <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30"
-                           autocomplete="off">
+                    <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30"  @keyup="show($event)" autocomplete="off" v-model="searchcontent">
                 </span>
             </form>
         </div>
@@ -34,19 +33,36 @@
 </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   name: 'Header',
+  data (){
+    return {
+      searchcontent:null
+    }
+  },
   props:{
-    headerdata:Array
+    headerdata:Array,
   },
   methods:{
     changetag:function(tag){
      this.$emit('changetag', tag)
+    },
+    show:function(ev){
+       if(ev.keyCode == 13&&this.searchcontent!=null){
+          axios.get('http://localhost:8081/Category/search?searchcontent='+this.searchcontent).then(this.getsuccda)
+
     }
-  }
+  },
+     getsuccda:function(res){
+      res=res.data   
+      if(res!=null&&res.ok){
+        var searchdata=res
+        this.$emit('searcharticle',searchdata)
+      }          
 
-
- 
+    }
+    }
 }
 </script>
 

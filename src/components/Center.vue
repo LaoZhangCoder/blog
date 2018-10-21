@@ -8,7 +8,7 @@
         <div class="post-data">
             <time datetime="2018-03-14" itemprop="datePublished">发布于 {{detail.date | dateFmt('YYYY-MM-DD')}}</time>
             /<a href="#comments">{{this.count?this.count:0}}条评论</a> /
-            {{detail.liulanliang?detail.liulanliang:0}}浏览
+            {{detail.liulanliang>0?detail.liulanliang:0}}浏览
         </div>
     </div>
     <div id="post-content" class="post-content" itemprop="articleBody">

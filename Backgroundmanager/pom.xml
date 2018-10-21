@@ -111,7 +111,11 @@
 				<artifactId>commons-fileupload</artifactId>
 				<version>${commons-fileupload.version}</version>
 			</dependency>
-			
+			<dependency>
+				<groupId>org.apache.solr</groupId>
+				<artifactId>solr-solrj</artifactId>
+				<version>${solrj.version}</version>
+			</dependency>
 			</dependencies>
 			<!-- 配置tomcat插件 -->
 	<build>

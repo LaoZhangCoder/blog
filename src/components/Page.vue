@@ -9,6 +9,7 @@
   background
   layout="prev, pager, next"
   :total="coutcategory ?coutcategory:count"
+  :current-page="thispage"
   :page-size="12">
 </el-pagination>
 
@@ -25,7 +26,8 @@ import axios from 'axios'
 export default {
   name: 'Homepage',
   props:{
-  	coutcategory:null
+  	coutcategory:null,
+    thispage:null
   },
   data() {return{
   	count:null

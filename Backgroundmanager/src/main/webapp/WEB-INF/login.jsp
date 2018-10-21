@@ -13,13 +13,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="/css/style.css"/>
     <style>
  .login_bg {
-    background: url("../imgs/loginBg.jpg") 0 0 repeat-x;
+    background: url("./imgs/loginBg.jpg") 0 0 repeat-x;
 }
 
 .loginBox {
     width: 1000px;
     margin: 0 auto;
-    background: url("../imgs/login_bg.jpg") 0 0 no-repeat;
+    background: url("./imgs/login_bg.jpg") 0 0 no-repeat;
 }
 
 .loginHeader {
@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="inputbox">
                     <label for="user">用户名：</label>
                     <input id="user" type="text" name="username" placeholder="请输入用户名" required/>
-                 <span style="color: red;float: left;position: absolute;">${msg }</span> 
+                 <span style="color: red;float: left;position: absolute;">${msg}</span> 
                 </div>
                 <div class="inputbox">
                     <label for="mima">密码：</label>

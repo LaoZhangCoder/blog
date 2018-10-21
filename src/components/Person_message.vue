@@ -19,7 +19,7 @@
 <li>江西/男/1997</li>
 <li>本科/南昌理工学院</li>
 <li>技术博客：http://www.shendehaizi</li>
-<li>Github：http://github.com/tomsajkdhsakjd/blog</li>
+<li>Github：http://github.com/tomsajkdhsakjd/</li>
 <li>期望职位：后台研发实习生</li>
 </ul>
 <hr />

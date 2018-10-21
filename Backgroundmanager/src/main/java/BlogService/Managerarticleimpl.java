@@ -1,6 +1,10 @@
 package BlogService;
+import java.io.IOException;
 import java.util.List;
 import javax.security.auth.login.LoginException;
+
+import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +38,9 @@ private RootuserMapper rm;
 private UserMapper um;
 @Autowired
 private LinksMapper lm;
+@Autowired
+private SolrServer solrserver;
+
 	public List<Article> selectall() {
 		// TODO Auto-generated method stub
 		List<Article> list = articlemapper.selectByExample(null);
@@ -46,6 +53,14 @@ private LinksMapper lm;
 		createCriteria.andIdEqualTo(id);
 		// TODO Auto-generated method stub
 		articlemapper.deleteByExample(example);
+		try {
+			solrserver.deleteById(id+"");
+			solrserver.commit();
+		} catch (SolrServerException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 	public void updatepassword(String oldPassword,String newPassword,String username) throws LoginException {
 		// TODO Auto-generated method stub
@@ -73,7 +88,8 @@ private LinksMapper lm;
 		List<Article> list = articlemapper.selectByExampleWithBLOBs(null);
 		if(list!=null) {
 		data.setList(list);
-		data.setOk(true);}
+		data.setOk(true);
+	 }
 		
 	}
 	public void getallcategory(Resultdata data) {
@@ -81,7 +97,8 @@ private LinksMapper lm;
 		List<Categorye> category = cm.getCategory();
 		if(category!=null) {
 			data.setListcategory(category);
-			data.setOk(true);}
+			data.setOk(true);
+		 }
 	}
 	public long getcount() {
 		int getallsize = cm.getallsize();
@@ -105,7 +122,8 @@ private LinksMapper lm;
 	if(list!=null) {
 		
 		data.setList(list);
-		data.setOk(true);}
+		data.setOk(true);
+	 }
 }
 	public void getnewsarticle(Resultdata data) {
 		// TODO Auto-generated method stub
@@ -113,6 +131,7 @@ private LinksMapper lm;
 		if(getnewdata!=null) {
 			data.setList(getnewdata);
 			data.setOk(true);
+		 
 		}
 		
 	}
@@ -125,6 +144,7 @@ private LinksMapper lm;
 		if(gettagdata!=null) {
 			data.setList(gettagdata);
 			data.setOk(true);
+		 
 		}
 		
 	}
@@ -179,6 +199,26 @@ private LinksMapper lm;
 		List<Links> list = lm.selectByExample(null);
 		
 		return list;
+	}
+	@Override
+	public void addpageviews(int id) {
+		// TODO Auto-generated method stub
+		ArticleExample example=new ArticleExample();
+		 Criteria criteria = example.createCriteria();
+		  criteria.andIdEqualTo(id);
+		  Article article = new Article();
+		  List<Article> list = articlemapper.selectByExample(example);
+		  Article article2 = list.get(0);
+		  if(article2.getLiulanliang()==null) {
+			  article2.setLiulanliang(0);
+		  }
+		  article=article2;
+		  int pageviews=article2.getLiulanliang();
+		  pageviews=pageviews+1;
+		  article.setLiulanliang(pageviews);
+		articlemapper.updateByExample(article, example);
+		
+		
 	}
 		
 	

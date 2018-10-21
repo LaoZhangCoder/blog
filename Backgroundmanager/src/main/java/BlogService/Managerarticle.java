@@ -28,6 +28,7 @@ List<User> getusercommentsbyid(int id);
 List<Comment> getcommenttotals();
 List <User> getnewcomment();
 List<Links> getalllinks();
+void addpageviews(int id);
 
 
 }

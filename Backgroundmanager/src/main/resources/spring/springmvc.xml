@@ -47,7 +47,7 @@
 		 <mvc:exclude-mapping path="/admin" />
 		  <mvc:exclude-mapping path="/tologin" />
 		   <mvc:exclude-mapping path="/tologin" />
-		  
+		  <mvc:exclude-mapping path="/imgs/**" />
 		  
 		 
 		<!-- 配置具体的拦截器 -->

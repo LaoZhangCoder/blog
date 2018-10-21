@@ -9,7 +9,7 @@
                 </li></ul></div></el-col>
       <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8"><div class="grid-content "> <h3 class="meta-title" style="margin-left:20px">最新文章</h3>
  <ul style="margin:1px 1px">
-<li v-for="item of news" :key="item.id">
+<li v-for="item of news" :key="item.id" @click="addpageviews(item.id)">
 <router-link :to="'/detail/'+item.id"  class="item-thumb  ">{{item.title}}</router-link>
 </li></ul>
 </div>
@@ -18,11 +18,18 @@
   </div>
 </template>
 <script>
+  import axios from 'axios'
 export default {
   name: 'Homefoot',
   props: {
     news: Array,
-    newcomments: Array }
+    newcomments: Array },
+    methods:{
+       addpageviews:function(id){
+
+         axios.get('http://localhost:8081/Category/addpageviews?id='+id)
+     },
+    }
 }
 </script>
 <style scoped>

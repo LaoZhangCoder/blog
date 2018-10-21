@@ -17,14 +17,18 @@ public class LoginHandleException  implements HandlerExceptionResolver{
 		// TODO Auto-generated method stub
 		// 定义异常信息
 				String msg = null;
-			
+				ModelAndView modelAndView = null;
 				if (exception instanceof LoginExection) {
 					// 如果是自定义异常，读取异常信息
-					ModelAndView modelAndView = new ModelAndView();
-					modelAndView.addObject("msg", msg);
-					modelAndView.setViewName("login");
+					System.out.println(1);
+					modelAndView = new ModelAndView();
 					msg = exception.getMessage();
 					System.out.println(msg);
+					modelAndView.addObject("msg", msg);
+					modelAndView.setViewName("login");
+					
+					
+					return modelAndView;
 					
 				}else {
 					// 如果是运行时异常，则取错误堆栈，从堆栈中获取异常信息
@@ -38,7 +42,7 @@ public class LoginHandleException  implements HandlerExceptionResolver{
 			
 				
 
-				ModelAndView modelAndView = null;
+			
 				return modelAndView;
 
 	}

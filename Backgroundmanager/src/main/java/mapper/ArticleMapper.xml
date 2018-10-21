@@ -116,6 +116,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="pojo.Article" >
+  <!-- resultType：设置返回的id的类型 -->
+	<selectKey keyColumn="id" keyProperty="id" order="AFTER"
+		resultType="int">
+		SELECT LAST_INSERT_ID()
+	</selectKey>
     insert into article (id, category, date, 
       imghref, backimghref, autor, 
       title, liulanliang, tag, 
