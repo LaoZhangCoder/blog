@@ -1,7 +1,6 @@
 package AriticleController;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,7 @@ public class AddController {
 private AriticleSerivice ari;
 @RequestMapping(value="/addariticle")
 public String addariticle(Article article, MultipartFile pictureFile,HttpServletRequest request) throws Exception {
-	String path = request.getSession().getServletContext().getRealPath("/")+ "imgs\\";;
+	String path = request.getSession().getServletContext().getRealPath("/")+ "imgs/";;
 	String picName = UUID.randomUUID().toString();
 	// 获取文件名
 		String oriName = pictureFile.getOriginalFilename();
@@ -29,7 +28,7 @@ public String addariticle(Article article, MultipartFile pictureFile,HttpServlet
 		pictureFile.transferTo(new File(path + picName + extName));
 		article.setImghref(picName + extName);
 	ari.addariticle(article);
-	return "redirect:http://localhost:8080/#/";
+	return "redirect:www.shendehaizi.com/#/";
 	
 }
 @RequestMapping(value="/toaddariticle")

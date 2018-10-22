@@ -27,7 +27,7 @@ export default {
     methods:{
        addpageviews:function(id){
 
-         axios.get('http://localhost:8081/Category/addpageviews?id='+id)
+         axios.get('http://admin.shendehaizi.com:8088/Category/addpageviews?id='+id)
      },
     }
 }

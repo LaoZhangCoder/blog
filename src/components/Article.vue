@@ -6,10 +6,10 @@
 
             <div class="post-list-item" v-for="item of homecontent" :key="item.id"  @click="addpageviews(item.id)">
                 <div class="post-list-item-container">
-                    <router-link :to="'/detail/'+item.id"  class="item-thumb  bg-deepgrey">
+         <router-link :to="'/detail/'+item.id"  class="item-thumb  bg-deepgrey" v-bind:style="{ 'background-image': 'url('+'http://admin.shendehaizi.com:8088/imgs/' + item.imghref + ')','background-repeat':'no-repeat', }">
 
-                        <dir class="item-desc" v-html="delHtmlTag('作者:'+item.autor+item.content)"></dir>
-                    </router-link>
+             <dir class="item-desc" v-html="delHtmlTag('作者:'+item.autor+item.content)"></dir>
+         </router-link>
                     <div class="item-slant reverse-slant &lt; bg-deepgrey"></div>
                     <div class="item-slant"></div>
                     <div class="item-label">
@@ -50,7 +50,7 @@ return str.replace(/<[^>]+>/g,"");
     },
     addpageviews:function(id){
   
-         axios.get('http://localhost:8081/Category/addpageviews?id='+id)
+         axios.get('http://admin.shendehaizi.com:8088/Category/addpageviews?id='+id)
      },
 
  },

@@ -86,7 +86,7 @@ export default {
   },
 methods: {
   getDetailinfo () {
-    axios.get('http://localhost:8081/Category/detail?id='+this.$route.params.id).then(this.getsuccdata)
+    axios.get('http://admin.shendehaizi.com:8088/Category/detail?id='+this.$route.params.id).then(this.getsuccdata)
   },
   getsuccdata:function(res){
 this.detail=res.data
@@ -98,7 +98,7 @@ handlesubmit:function(){
 if(this.username&&this.email&&this.comment&&reg.test(this.email))
   {
     
- axios.post('http://localhost:8081/Category/leavemessage?username='+this.username+'&email='+this.email+'&href='+this.href+'&comment='+this.comment+'&id='+this.detail.id).then(this.getsuccmessage)
+ axios.post('http://admin.shendehaizi.com:8088/Category/leavemessage?username='+this.username+'&email='+this.email+'&href='+this.href+'&comment='+this.comment+'&id='+this.detail.id).then(this.getsuccmessage)
 }
 
 },
@@ -109,7 +109,7 @@ if(res.data.ok){
 },
 getcomments:function()
  {
-   axios.get('http://localhost:8081/Category/leavecomments?id='+this.id).then(this.getleavecomments);
+   axios.get('http://admin.shendehaizi.com:8088/Category/leavecomments?id='+this.id).then(this.getleavecomments);
  },
  getleavecomments:function(res){
 res=res.data

@@ -42,11 +42,11 @@ export default {
     methods:{
 getHomeInfo:function(){
 
-  axios.get('http://localhost:8081/homedata?tag='+this.thistag+'&thispage='+this.thispage).then(this.getsuccjson)
-  axios.get('http://localhost:8081/newarticle').then(this.getsuccnews)
-  axios.get('http://localhost:8081/Category/count?tag='+this.thistag).then(this.getsucctagcount)
-  axios.get('http://localhost:8081/Category/getcommenttotal').then(this.getcommenttotal)
-  axios.get('http://localhost:8081/Category/getnewcomment').then(this.getnewcomment)
+  axios.get('http://admin.shendehaizi.com:8088/homedata?tag='+this.thistag+'&thispage='+this.thispage).then(this.getsuccjson)
+  axios.get('http://admin.shendehaizi.com:8088/newarticle').then(this.getsuccnews)
+  axios.get('http://admin.shendehaizi.com:8088/Category/count?tag='+this.thistag).then(this.getsucctagcount)
+  axios.get('http://admin.shendehaizi.com:8088/Category/getcommenttotal').then(this.getcommenttotal)
+  axios.get('http://admin.shendehaizi.com:8088/Category/getnewcomment').then(this.getnewcomment)
   
 },
 searchartic:function(searchdata){
@@ -70,8 +70,8 @@ this.totala=res.data
 changepagetag:function(thistag){
 this.thistag=thistag
 this.thispage=1
- axios.get('http://localhost:8081/homedata?tag='+this.thistag+'&thispage='+this.thispage).then(this.getsuccjson)
-axios.get('http://localhost:8081/Category/count?tag='+this.thistag).then(this.getsucctagcount)
+ axios.get('http://admin.shendehaizi.com:8088/homedata?tag='+this.thistag+'&thispage='+this.thispage).then(this.getsuccjson)
+axios.get('http://admin.shendehaizi.com:8088/Category/count?tag='+this.thistag).then(this.getsucctagcount)
 },
 getsucctagcount:function(res){
   this.categorypage=res.data
@@ -89,15 +89,15 @@ this.Articlelist=list
 },
 changecurrentpage:function(thispage){
   this.thispage=thispage
-  axios.get('http://localhost:8081/homedata?tag='+this.thistag+'&thispage='+this.thispage).then(this.getsuccjson)
+  axios.get('http://admin.shendehaizi.com:8088/homedata?tag='+this.thistag+'&thispage='+this.thispage).then(this.getsuccjson)
 },
 getHomecategory:function(){
-  axios.get('http://localhost:8081/homedatacategory').then(this.getcategoryjson)
+  axios.get('http://admin.shendehaizi.com:8088/homedatacategory').then(this.getcategoryjson)
 },
   
   getsuccjson:function(res){
 res=res.data
-
+console.log(res)
 if(res.ok&&res.list){
   const list=res.list
   

@@ -45,7 +45,7 @@ export default {
     },
      show:function(ev){
        if(ev.keyCode == 13&&this.searchcontent!=null){
-          axios.get('http://localhost:8081/Category/search?searchcontent='+this.searchcontent).then(this.getsuccda)
+          axios.get('http://admin.shendehaizi.com:8088/Category/search?searchcontent='+this.searchcontent).then(this.getsuccda)
 
     }
   },

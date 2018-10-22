@@ -30,10 +30,10 @@ components:{
 },
 methods:{
 getHomecategory:function(){
-  axios.get('http://localhost:8081/homedatacategory').then(this.getcategoryjson)
-   axios.get('http://localhost:8081/newarticle').then(this.getsuccnews)
-     axios.get('http://localhost:8081/Category/getnewcomment').then(this.getnewcomment)
-      axios.get('http://localhost:8081/Category/getlinks').then(this.getlinks)
+  axios.get('http://admin.shendehaizi.com:8088/homedatacategory').then(this.getcategoryjson)
+   axios.get('http://admin.shendehaizi.com:8088/newarticle').then(this.getsuccnews)
+     axios.get('http://admin.shendehaizi.com:8088/Category/getnewcomment').then(this.getnewcomment)
+      axios.get('http://admin.shendehaizi.com:8088/Category/getlinks').then(this.getlinks)
 
 },
 getlinks:function(res){

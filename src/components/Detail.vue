@@ -22,7 +22,7 @@ components:{
 },
 methods:{
 getHomecategory:function(){
-  axios.get('http://localhost:8081/homedatacategory').then(this.getcategoryjson)
+  axios.get('http://admin.shendehaizi.com:8088/homedatacategory').then(this.getcategoryjson)
  
 },
 getcategoryjson:function(res){
